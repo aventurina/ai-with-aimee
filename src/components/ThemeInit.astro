@@ -1,0 +1,19 @@
+---
+// Blocking theme-detection script. Must be the first thing in <head>
+// (right after the charset meta tag) so `data-theme` is set on <html>
+// before any CSS variables are read, preventing a flash of the wrong theme.
+---
+
+<script is:inline>
+    (function () {
+        try {
+            var stored = localStorage.getItem('theme');
+            var theme = stored === 'dark' || stored === 'light'
+                ? stored
+                : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+            /* ignore, e.g. private browsing / disabled storage */
+        }
+    })();
+</script>

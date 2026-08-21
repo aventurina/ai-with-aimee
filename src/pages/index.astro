@@ -1,0 +1,145 @@
+---
+// Home page with list of blog posts
+import { getCollection } from 'astro:content';
+import '../styles/theme.css';
+import ThemeInit from '../components/ThemeInit.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <ThemeInit />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI with Aimee</title>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .posts-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .post-card {
+            background: var(--bg-elevated);
+            padding: 1.75rem;
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius);
+            box-shadow: 0 1px 3px var(--shadow);
+            transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .post-card:hover {
+            box-shadow: 0 10px 24px var(--shadow-hover);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .post-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .post-meta {
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            background: var(--bg-elevated);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+        }
+
+        .empty-state code {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <div class="header-text">
+                <h1>AI with Aimee</h1>
+                <p class="subtitle">Exploring how AI fits into everyday life and work — documenting my journey from AI curious to AI capable, one experiment at a time.</p>
+            </div>
+            <ThemeToggle />
+        </header>
+
+        <div class="posts-list">
+            {sortedPosts.length === 0 ? (
+                <div class="empty-state">
+                    <p>No posts yet. Create your first blog post in <code>src/content/blog/</code></p>
+                </div>
+            ) : (
+                sortedPosts.map((post) => (
+                    <a href={`/blog/${post.slug}`} class="post-card">
+                        <h2>{post.data.title}</h2>
+                        <div class="post-meta">
+                            {post.data.pubDate.toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
+                        </div>
+                        <p class="post-excerpt">{post.data.description}</p>
+                        <span class="read-more">Read more →</span>
+                    </a>
+                ))
+            )}
+        </div>
+    </div>
+</body>
+</html>
