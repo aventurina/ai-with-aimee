@@ -2,6 +2,10 @@
 
 A modern, lightweight technical blog for exploring AI, web development, and tech innovation. Built with [Astro](https://astro.build) for blazing-fast performance and an optimal reading experience.
 
+![AI with Aimee Blog Screenshot](./screenshot-ai-with-aimee.png)
+
+**[👉 View the Live Blog →](https://ai-with-aimee.vercel.app/)**
+
 ## Features
 
 ✨ **Fast & Lightweight** – Generates pure static HTML with minimal JavaScript  
