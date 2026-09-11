@@ -1,101 +1,104 @@
 # AI with Aimee 🤖
 
-A modern, lightweight technical blog for exploring AI, web development, and tech innovation. Built with [Astro](https://astro.build) for blazing-fast performance and an optimal reading experience.
+My public notebook for learning AI: what I try, what surprises me, and what I get wrong along the way. Built with [Astro](https://astro.build), so every post is a version-controlled Markdown file that builds straight into a fast, static site.
 
 ![AI with Aimee Blog Screenshot](./screenshot-ai-with-aimee.png)
 
-**[👉 View the Live Blog →](https://ai-with-aimee.vercel.app/)**
+**[View the live blog →](https://ai-with-aimee.vercel.app/)**
 
 ## Features
 
-✨ **Fast & Lightweight** – Generates pure static HTML with minimal JavaScript  
-📝 **Markdown-First** – Write posts in clean, simple Markdown  
-🎨 **Beautiful by Default** – Minimal, distraction-free design  
-📱 **Fully Responsive** – Perfect on desktop, tablet, and mobile  
-🏷️ **Tagging System** – Organize posts with flexible tags  
-🔄 **Auto-Sorting** – Posts automatically sorted by publish date  
-⚡ **Zero Configuration** – Start writing immediately, no setup hassle  
-🚀 **Deploy Anywhere** – Works with Vercel, Netlify, GitHub Pages, and more  
+- Fast and lightweight: generates pure static HTML with minimal JavaScript
+- Markdown-first: write posts in clean, simple Markdown
+- Minimal, distraction-free design
+- Fully responsive on desktop, tablet, and mobile
+- Tagging system to organize posts
+- Posts sort automatically by publish date
+- Deploys anywhere: Vercel, Netlify, GitHub Pages, and more
 
-## Tech Stack
+## Tech stack
 
-- **Framework**: [Astro](https://astro.build) – The web framework for content-driven sites
-- **Content**: Markdown with frontmatter metadata
-- **Styling**: CSS (customizable, minimal framework overhead)
-- **Deployment**: Static site generation (SSG)
-- **Node.js**: v16+ recommended
+- Framework: [Astro](https://astro.build), a static site generator built for content-driven sites
+- Content: Markdown with frontmatter metadata
+- Styling: CSS, kept minimal and easy to customize
+- Deployment: static site generation (SSG)
+- Node.js: v16+ recommended
 
-## Quick Start
+## Quick start
 
-### 1. Install & Setup
+### 1. Install and set up
+
 ```bash
 npm install
 ```
 
-### 2. Start Development Server
+### 2. Start the development server
+
 ```bash
 npm run dev
 ```
-Visit `http://localhost:3000` – your blog is ready with hot reload enabled.
 
-### 3. Create Your First Post
-Create `src/content/blog/my-first-post.md`:
+Visit `http://localhost:3000`, your blog is ready with hot reload enabled.
+
+### 3. Create a new post
+
+Add a new file to `src/content/blog/`, for example `my-new-post.md`:
+
 ```markdown
 ---
-title: My First Blog Post
+title: My New Post
 description: A short summary that appears in the blog list
-pubDate: 2026-08-21
-author: Your Name
-tags: ["astro", "blogging"]
+pubDate: 2026-09-11
+author: Aimee
+tags: ["ai", "learning-journey"]
 ---
 
-# My First Post
+# My New Post
 
 Write your content here in Markdown...
 ```
 
-Posts appear instantly on your home page, sorted by date (newest first).
+Posts appear instantly on the home page, sorted by date, newest first.
 
 ### 4. Deploy
+
 ```bash
 npm run build
 ```
+
 Deploy the `dist/` folder to your hosting provider.
 
-## Writing Blog Posts
+## Writing blog posts
 
-### File Location
-All blog posts go in `src/content/blog/` as `.md` files.
+### File location
 
-**Filename Format**: Use kebab-case  
-- `my-awesome-post.md` → `/blog/my-awesome-post`
-- `astro-tips-and-tricks.md` → `/blog/astro-tips-and-tricks`
+All blog posts live in `src/content/blog/` as `.md` files, for example `building-a-rag-chatbot-with-local-embeddings.md` and `why-im-starting-my-ai-learning-journey.md`.
 
-### Post Frontmatter
+Filenames use kebab-case:
+- `my-awesome-post.md` becomes `/blog/my-awesome-post`
 
-Every post requires this frontmatter (YAML) at the top:
+### Post frontmatter
+
+Every post needs this frontmatter (YAML) at the top:
 
 ```markdown
 ---
-title: "Your Post Title"              # Required
-description: "Short summary"           # Required (appears in blog list)
-pubDate: 2026-08-21                   # Required (YYYY-MM-DD format)
-author: "Your Name"                   # Optional
-tags: ["tag1", "tag2", "tag3"]        # Optional (can have multiple)
+title: "Your post title"              # Required
+description: "Short summary"          # Required, appears in the blog list
+pubDate: 2026-09-11                   # Required, YYYY-MM-DD format
+author: "Aimee"                       # Optional
+tags: ["tag1", "tag2", "tag3"]        # Optional, can have multiple
 ---
-
-# Your post content starts here...
 ```
 
-### Writing Tips
+### Writing tips
 
-- Use standard Markdown syntax (`#`, `##` for headings, `**bold**`, `*italic*`, etc.)
-- Code blocks work automatically with syntax highlighting
-- Links, lists, tables, and images all supported
-- Posts are fully styled with consistent typography
-- **Draft mode**: Rename files starting with underscore (`_draft-post.md`) to exclude from builds
+- Standard Markdown syntax works throughout: `#`, `##` for headings, `**bold**`, `*italic*`, and so on.
+- Code blocks get syntax highlighting automatically.
+- Links, lists, tables, and images are all supported.
+- Draft mode: rename a file to start with an underscore (`_draft-post.md`) to exclude it from the build.
 
-## Project Structure
+## Project structure
 
 ```
 src/
@@ -106,8 +109,7 @@ src/
 ├── content/
 │   ├── config.ts                    # Content collection schema
 │   └── blog/
-│       ├── first-post.md            # Sample post (delete this)
-│       └── your-posts.md            # Add your posts here
+│       └── *.md                     # Individual posts
 ├── components/                      # Reusable Astro components
 ├── styles/                          # Global styles
 └── layouts/                         # Layout templates
@@ -118,82 +120,68 @@ package.json                          # Project dependencies
 
 ## Customization
 
-### Change Blog Title & Tagline
+### Change the blog title and tagline
+
 Edit `src/pages/index.astro`:
+
 ```astro
 <h1>Your Blog Name</h1>
 <p class="subtitle">Your tagline here</p>
 ```
 
-### Customize Colors & Fonts
+### Customize colors and fonts
+
 Edit the `<style>` section in:
-- `src/pages/index.astro` – Home page styling
-- `src/pages/blog/[...slug].astro` – Post page styling
+- `src/pages/index.astro`, home page styling
+- `src/pages/blog/[...slug].astro`, post page styling
 
-Update CSS variables or add custom colors/fonts to match your brand.
+### Add more pages
 
-### Add More Pages
 Create new files in `src/pages/`:
-- `src/pages/about.astro` → `/about`
-- `src/pages/projects.md` → `/projects`
-- `src/pages/contact.astro` → `/contact`
+- `src/pages/about.astro` becomes `/about`
+- `src/pages/projects.md` becomes `/projects`
 
 Use `.astro` for dynamic content or `.md` for static Markdown pages.
 
 ## Deployment
 
-### Vercel (Recommended)
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com) and import your repo
-3. Vercel auto-detects Astro and deploys automatically
-4. Every push to main redeploys instantly
+### Vercel (recommended)
+
+1. Push code to GitHub.
+2. Go to [vercel.com](https://vercel.com) and import the repo.
+3. Vercel auto-detects Astro and deploys automatically.
+4. Every push to main redeploys instantly.
 
 ### Netlify
-1. Push code to GitHub
-2. Go to [netlify.com](https://netlify.com) and connect your repo
-3. Netlify detects Astro config automatically
-4. Your site is live with every commit
+
+1. Push code to GitHub.
+2. Go to [netlify.com](https://netlify.com) and connect the repo.
+3. Netlify detects the Astro config automatically.
 
 ### GitHub Pages
-1. Build locally: `npm run build`
-2. Push `dist/` folder to `gh-pages` branch
-3. Enable GitHub Pages in repo settings
 
-### Other Static Hosts
-Since Astro generates pure static HTML, deploy to:
-- Firebase Hosting
-- AWS S3 + CloudFront
-- Azure Static Web Apps
-- Any web server that serves static files
+1. Build locally: `npm run build`.
+2. Push the `dist/` folder to a `gh-pages` branch.
+3. Enable GitHub Pages in repo settings.
+
+### Other static hosts
+
+Since Astro generates pure static HTML, this also deploys to Firebase Hosting, AWS S3 + CloudFront, Azure Static Web Apps, or any web server that serves static files.
 
 ## Performance
 
-This blog is optimized for speed:
-- ⚡ **Zero JavaScript** by default (pure HTML & CSS)
-- 🚀 **Instant loads** – static content served at CDN speeds
-- 📦 **Minimal dependencies** – no bloated frameworks
-- 🎯 **SEO-friendly** – clean HTML, fast page loads, proper metadata
+- Zero JavaScript by default: pure HTML and CSS
+- Static content served at CDN speeds
+- Minimal dependencies, no bloated frameworks
+- SEO-friendly: clean HTML, fast page loads, proper metadata
 
 ## Resources
 
-- [Astro Documentation](https://docs.astro.build)
-- [Astro Content Collections Guide](https://docs.astro.build/en/guides/content-collections/)
-- [Markdown Syntax Reference](https://www.markdownguide.org/)
-- [YAML Frontmatter Guide](https://jekyllrb.com/docs/front-matter/)
-
-## Contributing
-
-Found a bug or want to improve this blog template? Feel free to:
-1. Fork this repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- [Astro documentation](https://docs.astro.build)
+- [Astro content collections guide](https://docs.astro.build/en/guides/content-collections/)
+- [Markdown syntax reference](https://www.markdownguide.org/)
+- [YAML frontmatter guide](https://jekyllrb.com/docs/front-matter/)
 
 ## License
 
-MIT License – Feel free to use this for personal or commercial projects.
-
----
-
-**Happy blogging!** ✍️ Start writing amazing content today.
+MIT License, feel free to use this as a starting point for your own blog.
